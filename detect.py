@@ -4,6 +4,7 @@ import numpy as np
 from yoloface import face_analysis
 
 # Load model
+<<<<<<< HEAD
 model_age = load_model('E:/Okiosk-age-prediction-main/model/model_age.hdf5')
 
 
@@ -13,6 +14,18 @@ def detect_video():
     while True:
         frame = cv2.VideoCapture(0)
         _, img = frame.read()
+=======
+model_age = load_model('./model/model_age.hdf5')
+
+a = []
+
+def detect_video(url):
+    frame = cv2.VideoCapture(url)
+    
+    while True:
+        _, img = frame.read()
+        img = cv2.flip(img, 1)
+>>>>>>> 7f0aa80b1af720580f613913c7160dae487a50a7
         face=face_analysis()
         _,box,_=face.face_detection(frame_arr=img,frame_status=True,model='tiny')
         for x,y,w,h in box:
@@ -31,9 +44,19 @@ def detect_video():
         if len(a)==5:
             break
     print(a)
+<<<<<<< HEAD
     print(np.mean(a))
     frame.release()
     cv2.destroyAllWindows()
     return np.mean(a)
 
 #detect_video(0)
+=======
+    print(max(a))
+    print(np.mean(a))
+    b = np.mean(a)
+    frame.release()
+    cv2.destroyAllWindows()
+
+detect_video(0)
+>>>>>>> 7f0aa80b1af720580f613913c7160dae487a50a7
